@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "litmap"
+version = "0.1.0"
+description = "Search OpenAlex / Semantic Scholar, cluster abstracts, label the clusters, and draw an interactive literature map."
+requires-python = ">=3.10"
+dependencies = [
+  "pandas", "numpy", "pyarrow", "requests", "tqdm", "nameparser",
+  "scikit-learn", "sentence-transformers", "umap-learn", "hdbscan",
+  "datamapplot", "streamlit",
+]
+
+[project.scripts]
+litmap = "litmap.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["litmap*"]
