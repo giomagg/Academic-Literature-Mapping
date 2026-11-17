@@ -1,4 +1,4 @@
-# `litmap` – mapping the academic landascape
+# `litmap` – mapping academic landscapes
 
 Create interactive semantic literature maps from OpenAlex or Semantic Scholar search. This can be used by scholars and practitioners for quantitative literature reviews or exploratory search of their field's composition. See example maps on [politicisation](https://giomagg.github.io/projects/html_maps/Politicisation.html), [mainstreaming](https://giomagg.github.io/projects/html_maps/Political-Mainstreaming.html), and [disinformation](https://giomagg.github.io/projects/html_maps/Disinformation.html).
 
