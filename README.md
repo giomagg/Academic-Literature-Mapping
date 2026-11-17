@@ -1,26 +1,88 @@
 # litmap
 
-Search OpenAlex or Semantic Scholar, cluster the abstracts, label the clusters, and draw an interactive literature map.
+Create interactive semantic literature maps from OpenAlex or Semantic Scholar search. 
 
 ## Install
-    pip install -e .
+```
+https://github.com/giomagg/Academic-Literature-Mapping.git    
+cd Academic-Literature-Mapping
+pip install -e .
+```
 
-## Workflow
-1. `litmap build -q '"far-right" OR "radical right"' -q populism --out project --email you@uni.edu`
-   Writes `project/interpretation.csv` (cluster, n_docs, keywords, top_titles, empty `label`).
-2. Fill in the `label` column. Empty labels fall back to the keywords; clusters sharing a label are merged on the map.
-3. `litmap render project` writes `project/map.html`.
+## Use
+### CLI 
+**Step 1.** Run build with search terms and parameters. This writes `project/interpretation.csv` with columns (cluster, n_docs, keywords, top_titles, empty `label`).
+```litmap build -q '"far-right" OR "radical right"' -q populism --out project --source openalex```
 
-Or run `litmap app` for the Streamlit UI (search, edit labels in a table, re-render).
+**Step 2.** Open the `interpretation.csv` and fill in the `label` column. This step is necessary to create labels concise for the final interactive map. Empty labels fall back onto the keywords; clusters sharing the same label are merged into one on the map.
 
-From Python:
+**Step 3.** Run render, visualise map (`project/map.html`) and iteratively adjust labels. 
+```litmap render project```.
 
-    from litmap import build_project, render_map
-    build_project(['"far-right" OR "radical right"'], out_dir="project")
-    render_map("project", title="Far right & populism")
+See full CLI flag options below 
 
-## Notes
-- Stage 2 reads the saved coordinates and clusters, so labels stay valid between renders. Do not re-run `build` over a project you have already labelled.
-- Semantic Scholar: set `S2_API_KEY`. OpenAlex: `--email` or `OPENALEX_EMAIL` (optionally `OPENALEX_API_KEY`).
-- Defaults differ slightly from the original notebook: cosine metric and a fixed UMAP seed.
-- Not tested against live APIs or the full ML stack in the build sandbox (no network): run a small first query (`--max-results 500`) to check your setup.
+### Python
+```
+from litmap import build_project, render_map
+build_project(['"far-right" OR "radical right"'], out_dir="project")
+render_map("project", title="Far right & populism")
+```
+
+### Streamlit app 
+You can also run `litmap` through a **Streamlit UI** in your browser (search, edit labels in a table, re-render). Simply run: 
+```litmap app```
+
+
+### CLI Options
+#### `build`
+```
+litmap build -q "research topic" [options]
+
+Flag	            Default	        Description
+-q, --query	        Required	    Search query. Can be repeated to search multiple topics.
+--source	        openalex	    Academic database: openalex or semantic_scholar.
+--search-in	        title_abstract	Fields to search: title_abstract, title, abstract, fulltext, 
+                                    or all. Semantic Scholar supports title_abstract only.
+--out	            project	        Output project directory.
+--max-results       5000	        Max publications per query. NOTE: Use 0 to retrieve ALL available results.
+--from-year	        None	        Earliest publication year.
+--to-year	        None	        Latest publication year.
+--min-cluster-size	30	    Minimum number of publications required to form a cluster in HDBSCAN.
+```
+Example:
+```
+litmap build \
+    -q "Far-right" \
+    -q "populism" \
+    --source openalex \
+    --from-year 2020 \
+    --to-year 2025 \
+    --max-results 10000 \
+    --min-cluster-size 30 \ 
+    --out far_righ_research
+```
+
+#### `render` 
+```
+litmap render PROJECT [options]
+
+Flag	            Default	    Description
+project	            Required	Path to the project directory.
+--interpretation	None	    Custom path to interpretation.csv.
+--title	            None	    Custom title for the research map.
+--light	            False	    Enables the light visualization theme (default is dark theme).
+```
+Example:
+
+```
+litmap render far_righ_research \
+    --title "Far-right Research Landscape" \
+    --light
+```
+
+#### `app`
+```
+litmap app
+```
+This launches the Streamlit application. No additional arguments are required.
+ 
