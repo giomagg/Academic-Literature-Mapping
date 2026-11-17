@@ -1,6 +1,6 @@
 # litmap
 
-Create interactive semantic literature maps from OpenAlex or Semantic Scholar search. 
+Create interactive semantic literature maps from OpenAlex or Semantic Scholar search. See example maps on [politicisation](https://giomagg.github.io/projects/html_maps/Politicisation.html), [mainstreaming](https://giomagg.github.io/projects/html_maps/Political-Mainstreaming.html), and [disinformation](https://giomagg.github.io/projects/html_maps/Disinformation.html).
 
 You need an API key to use: 
 - For OpenAlex create an account, and then receive your free key from https://openalex.org/settings/api-key 
