@@ -12,12 +12,18 @@ pip install -e .
 ## Use
 ### CLI 
 **Step 1.** Run build with search terms and parameters. This writes `project/interpretation.csv` with columns (cluster, n_docs, keywords, top_titles, empty `label`).
-```litmap build -q '"far-right" OR "radical right"' -q populism --out project --source openalex```
+
+```
+litmap build -q '"far-right" OR "radical right"' -q populism --out project --source openalex
+```
 
 **Step 2.** Open the `interpretation.csv` and fill in the `label` column. This step is necessary to create labels concise for the final interactive map. Empty labels fall back onto the keywords; clusters sharing the same label are merged into one on the map.
 
 **Step 3.** Run render, visualise map (`project/map.html`) and iteratively adjust labels. 
-```litmap render project```.
+
+```
+litmap render project
+```
 
 See full CLI flag options below 
 
@@ -29,8 +35,11 @@ render_map("project", title="Far right & populism")
 ```
 
 ### Streamlit app 
-You can also run `litmap` through a **Streamlit UI** in your browser (search, edit labels in a table, re-render). Simply run: 
-```litmap app```
+You can also run `litmap` through a **Streamlit UI** in your browser (search, edit labels in a table, re-render). Simply run:
+
+```
+litmap app
+```
 
 
 ### CLI Options
@@ -81,8 +90,9 @@ litmap render far_righ_research \
 ```
 
 #### `app`
+This launches the Streamlit application. No additional arguments are required.
 ```
 litmap app
-```
-This launches the Streamlit application. No additional arguments are required.
- 
+``` 
+
+Cite: Giovanni Maggi (2026). litmap – map the academic landscape. https://github.com/giomagg/Academic-Literature-Mapping
