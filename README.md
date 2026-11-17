@@ -8,8 +8,9 @@ You need an API key to use:
 
 ## Install
 ```
-https://github.com/giomagg/Academic-Literature-Mapping.git    
+git clone https://github.com/giomagg/Academic-Literature-Mapping.git    
 cd Academic-Literature-Mapping
+python -m venv venv
 pip install -e .
 ```
 
