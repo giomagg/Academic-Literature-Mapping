@@ -2,6 +2,10 @@
 
 Create interactive semantic literature maps from OpenAlex or Semantic Scholar search. 
 
+You need an API key to use: 
+- For OpenAlex create an account, and then receive your free key from https://openalex.org/settings/api-key 
+- For Semantic Scholars request a temporary API key at https://www.semanticscholar.org/product/api#api-key-form
+
 ## Install
 ```
 https://github.com/giomagg/Academic-Literature-Mapping.git    
